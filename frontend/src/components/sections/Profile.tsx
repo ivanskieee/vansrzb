@@ -60,7 +60,12 @@ export default function Profile() {
         <img
           src={isHovered ? "/profile-2.jpg" : "/profile-1.jpg"}
           alt="Profile"
-          style={{ width: "200px", height: "220px", objectFit: "cover", objectPosition: "top" }}
+          style={{
+            width: "200px",
+            height: "220px",
+            objectFit: "cover",
+            objectPosition: "top",
+          }}
         />
       </div>
 
@@ -103,14 +108,41 @@ export default function Profile() {
         `}</style>
 
         <div className="grid grid-cols-2 gap-3 mt-6 max-w-md">
-          <Button size="lg">Download CV</Button>
-          <Button size="lg">Email</Button>
-          <Button variant="outline" size="lg">
-            GitHub
-          </Button>
-          <Button variant="outline" size="lg">
-            LinkedIn
-          </Button>
+          {/* Download CV */}
+          <a href="/cv-brilata-1.pdf" download>
+            <Button size="lg" className="w-full">
+              Download CV
+            </Button>
+          </a>
+
+          {/* Email */}
+          <a href="mailto:ibrilata.dev@gmail.com">
+            <Button size="lg" className="w-full">
+              Email
+            </Button>
+          </a>
+
+          {/* GitHub */}
+          <a
+            href="https://github.com/ivanskieee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" size="lg" className="w-full">
+              GitHub
+            </Button>
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/vansrzb/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" size="lg" className="w-full">
+              LinkedIn
+            </Button>
+          </a>
         </div>
       </div>
     </div>
