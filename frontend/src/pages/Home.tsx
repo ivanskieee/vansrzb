@@ -4,25 +4,39 @@ import TechStack from "../components/sections/TechStack"
 import Projects from "../components/sections/Projects"
 import Experience from "../components/sections/Experience"
 import Sidebar from "../components/layout/Sidebar"
+import Footer from "../components/layout/Footer"
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-8">
-      
-      {/* LEFT / MAIN */}
-      <section className="lg:col-span-2 space-y-8">
-        <Profile />
-        <About />
-        <TechStack />
-        <Projects />
-      </section>
+    <>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-8">
 
-      {/* RIGHT SIDEBAR */}
-      <aside className="space-y-6">
-        <Sidebar />
-        <Experience />
-      </aside>
+        {/* LEFT / MAIN */}
+        <section className="lg:col-span-2 space-y-8">
+          <Profile />
+          <About />
+        </section>
 
-    </div>
+        {/* RIGHT SIDEBAR */}
+        <aside className="space-y-6">
+          <Sidebar />
+          <Experience />
+        </aside>
+
+        {/* FULL-WIDTH TECH STACK */}
+        <div className="lg:col-span-3">
+          <TechStack />
+        </div>
+
+        {/* PROJECTS BACK TO LEFT */}
+        <section className="lg:col-span-2 space-y-8">
+          <Projects />
+        </section>
+
+      </div>
+
+      <Footer />
+    </>
   )
 }
+
