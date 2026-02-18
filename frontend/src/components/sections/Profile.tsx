@@ -73,9 +73,16 @@ export default function Profile() {
         <div className="flex items-center gap-2 mb-1">
           <h1 className="text-4xl font-bold">Ivan Brilata</h1>
           <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#1D9BF0" />
+            {/* Curly / star-like badge shape */}
             <path
-              d="M9 12l2 2 4-4"
+              d="M12 2.5
+       l2.1 1.5 2.6-.3 1.3 2.3 2.4.9-.3 2.6 1.5 2.1-1.5 2.1.3 2.6-2.4.9-1.3 2.3-2.6-.3-2.1 1.5-2.1-1.5-2.6.3-1.3-2.3-2.4-.9.3-2.6-1.5-2.1 1.5-2.1-.3-2.6 2.4-.9 1.3-2.3 2.6.3L12 2.5z"
+              fill="#1DA1F2"
+            />
+
+            {/* Check icon */}
+            <path
+              d="M9.5 12.5l1.8 1.8 3.8-4"
               stroke="white"
               strokeWidth="2"
               strokeLinecap="round"
