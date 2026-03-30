@@ -12,9 +12,10 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-8">
 
         {/* LEFT / MAIN */}
-        <section className="lg:col-span-2 space-y-8">
+        <section className="lg:col-span-2 space-y-6">
           <Profile />
           <About />
+          <TechStack />
         </section>
 
         {/* RIGHT SIDEBAR */}
@@ -25,11 +26,10 @@ export default function Home() {
 
         {/* FULL-WIDTH TECH STACK */}
         <div className="lg:col-span-3">
-          <TechStack />
         </div>
 
         {/* PROJECTS BACK TO LEFT */}
-        <section className="lg:col-span-2 space-y-8">
+        <section className="lg:col-span-2 space-y-6">
           <Projects />
         </section>
 
