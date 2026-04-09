@@ -10,14 +10,18 @@ const BOOT_LINES = [
   "Ready.",
 ]
 
-export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
+interface LoadingScreenProps {
+  onComplete: () => void
+  isDark: boolean
+}
+
+export default function LoadingScreen({ onComplete, isDark }: LoadingScreenProps) {
   const [visibleLines, setVisibleLines] = useState<string[]>([])
   const [progress, setProgress] = useState(0)
   const [fadeOut, setFadeOut] = useState(false)
 
   useEffect(() => {
     let lineIndex = 0
-
     const lineInterval = setInterval(() => {
       if (lineIndex < BOOT_LINES.length) {
         setVisibleLines((prev) => [...prev, BOOT_LINES[lineIndex]])
@@ -31,59 +35,57 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         }, 400)
       }
     }, 300)
-
     return () => clearInterval(lineInterval)
   }, [onComplete])
 
   return (
+    // Apply "dark" class here so (&:is(.dark *)) CSS vars resolve correctly
     <div
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center transition-opacity duration-700 ${
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
-      style={{ background: "#0a0e1a" }}
+      } ${isDark ? "dark" : ""}`}
+      style={{ background: "var(--background)" }}
     >
-      {/* Scanline overlay */}
+      {/* Subtle grid using --border */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-40"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,180,0.015) 2px, rgba(0,255,180,0.015) 4px)",
-        }}
-      />
-
-      {/* Grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,255,180,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,180,0.15) 1px, transparent 1px)",
+            "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
 
       <div className="relative w-full max-w-xl px-8">
-        {/* Logo / Title */}
+        {/* Identity block */}
         <div className="mb-8 text-center">
           <div
-            className="inline-block font-mono text-3xl font-bold tracking-widest mb-1"
-            style={{ color: "#00ffb4", letterSpacing: "0.25em" }}
+            className="font-mono font-bold tracking-widest mb-1"
+            style={{ fontSize: "1.875rem", color: "var(--foreground)", letterSpacing: "0.2em" }}
+          >
+            VAN'S
+          </div>
+          <div
+            className="font-mono font-medium tracking-widest mb-1"
+            style={{ fontSize: "0.875rem", color: "var(--foreground)", letterSpacing: "0.15em", opacity: 0.7 }}
           >
             PORTFOLIO
           </div>
           <div
-            className="font-mono text-xs tracking-widest uppercase"
-            style={{ color: "rgba(0,255,180,0.4)" }}
+            className="font-mono tracking-widest uppercase"
+            style={{ fontSize: "0.7rem", color: "var(--foreground)", opacity: 0.4 }}
           >
-            System Boot v1.0.0
+            Full-Stack Developer · v3.0.0
           </div>
         </div>
 
         {/* Terminal log */}
         <div
-          className="font-mono text-xs mb-6 rounded"
+          className="font-mono mb-6 rounded-xl"
           style={{
-            background: "rgba(0,255,180,0.04)",
-            border: "1px solid rgba(0,255,180,0.15)",
+            fontSize: "0.75rem",
+            background: "var(--card)",
+            border: "1px solid var(--border)",
             padding: "1rem",
             minHeight: "160px",
           }}
@@ -91,19 +93,20 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           {visibleLines.map((line, i) => (
             <div
               key={i}
-              className="leading-relaxed animate-fade-in"
+              className="leading-relaxed ls-fade-in"
               style={{
-                color: i === visibleLines.length - 1 ? "#00ffb4" : "rgba(0,255,180,0.45)",
+                color: "var(--foreground)",
+                opacity: i === visibleLines.length - 1 ? 1 : 0.45,
               }}
             >
-              <span style={{ color: "rgba(0,255,180,0.3)" }}>{">"} </span>
+              <span style={{ opacity: 0.3 }}>{">"} </span>
               {line}
               {i === visibleLines.length - 1 && (
                 <span
                   className="inline-block w-2 h-3 ml-1 align-middle"
                   style={{
-                    background: "#00ffb4",
-                    animation: "blink 0.8s step-end infinite",
+                    background: "var(--foreground)",
+                    animation: "ls-blink 0.8s step-end infinite",
                   }}
                 />
               )}
@@ -115,40 +118,36 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         <div className="mb-2">
           <div
             className="w-full rounded-full overflow-hidden"
-            style={{
-              height: "3px",
-              background: "rgba(0,255,180,0.1)",
-            }}
+            style={{ height: "3px", background: "var(--border)" }}
           >
             <div
               className="h-full rounded-full transition-all duration-300"
-              style={{
-                width: `${progress}%`,
-                background: "linear-gradient(90deg, #00ffb4, #00c8ff)",
-                boxShadow: "0 0 8px rgba(0,255,180,0.6)",
-              }}
+              style={{ width: `${progress}%`, background: "var(--foreground)" }}
             />
           </div>
         </div>
 
         {/* Progress label */}
-        <div className="flex justify-between font-mono text-xs" style={{ color: "rgba(0,255,180,0.35)" }}>
+        <div
+          className="flex justify-between font-mono"
+          style={{ fontSize: "0.7rem", color: "var(--foreground)", opacity: 0.35 }}
+        >
           <span>Loading...</span>
           <span>{progress}%</span>
         </div>
       </div>
 
       <style>{`
-        @keyframes blink {
+        @keyframes ls-blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
-        @keyframes fadeIn {
+        @keyframes ls-fadeIn {
           from { opacity: 0; transform: translateY(4px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in {
-          animation: fadeIn 0.25s ease-out forwards;
+        .ls-fade-in {
+          animation: ls-fadeIn 0.25s ease-out forwards;
         }
       `}</style>
     </div>

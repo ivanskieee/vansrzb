@@ -1,73 +1,233 @@
+import React from "react"
+
 const projects = [
   {
     name: "SPC Evaluation System",
     desc: "Teacher performance evaluation platform",
-    repoLink: "https://github.com/yourusername/spc-evaluation"
+    tag: "Web App",
+    year: "2024",
+    stack: ["Laravel", "Vue", "MySQL"],
+    repoLink: "https://github.com/yourusername/spc-evaluation",
+    mockType: "dashboard",
   },
   {
-    name: "School Portal System", 
+    name: "School Portal System",
     desc: "Enrollment & tuition payment system",
-    repoLink: "https://github.com/yourusername/school-portal"
-  }
+    tag: "Portal",
+    year: "2024",
+    stack: ["Next.js", "Prisma", "Stripe"],
+    repoLink: "https://github.com/yourusername/school-portal",
+    mockType: "portal",
+  },
+  {
+    name: "Project Three",
+    desc: "Add your project description here.",
+    tag: "Mobile",
+    year: "2024",
+    stack: ["React Native", "Expo"],
+    repoLink: "#",
+    mockType: "mobile",
+  },
+  {
+    name: "Project Four",
+    desc: "Add your project description here.",
+    tag: "Dashboard",
+    year: "2023",
+    stack: ["React", "Tailwind"],
+    repoLink: "#",
+    mockType: "cards",
+  },
+  {
+    name: "Project Five",
+    desc: "Add your project description here.",
+    tag: "API",
+    year: "2023",
+    stack: ["Node.js", "Express"],
+    repoLink: "#",
+    mockType: "list",
+  },
+  {
+    name: "Project Six",
+    desc: "Add your project description here.",
+    tag: "Tool",
+    year: "2023",
+    stack: ["Python", "FastAPI"],
+    repoLink: "#",
+    mockType: "chart",
+  },
 ]
+
+type MockUIProps = { type: string }
+
+function MockUI({ type }: MockUIProps) {
+  const base = "rounded bg-black/5 dark:bg-white/5"
+
+  if (type === "portal") {
+    return (
+      <div className="flex flex-col gap-1.5 h-full">
+        <div className={`${base} h-2 w-4/5`} />
+        <div className="flex gap-1.5 h-5">
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+        </div>
+        <div className="flex gap-1.5 flex-1">
+          <div className={`${base} flex-[3]`} />
+          <div className={`${base} flex-1`} />
+        </div>
+        <div className={`${base} h-2 w-1/2`} />
+      </div>
+    )
+  }
+
+  if (type === "mobile") {
+    return (
+      <div className="flex flex-col gap-1.5 h-full">
+        <div className="flex gap-2 items-center h-6">
+          <div className={`${base} rounded-full w-6 h-6 shrink-0`} />
+          <div className="flex flex-col gap-1 flex-1">
+            <div className={`${base} h-1.5 w-4/5`} />
+            <div className={`${base} h-1.5 w-2/5`} />
+          </div>
+        </div>
+        <div className={`${base} flex-1 rounded-md`} />
+        <div className={`${base} h-2 w-full`} />
+        <div className={`${base} h-2 w-3/5`} />
+      </div>
+    )
+  }
+
+  if (type === "cards") {
+    return (
+      <div className="flex flex-col gap-1.5 h-full">
+        <div className="flex gap-1.5 h-5">
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+        </div>
+        <div className={`${base} h-3 w-1/2`} />
+        <div className="flex gap-1.5 flex-1">
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+        </div>
+      </div>
+    )
+  }
+
+  if (type === "list") {
+    return (
+      <div className="flex flex-col gap-1.5 h-full">
+        <div className={`${base} h-2.5 w-full`} />
+        <div className="flex gap-2 flex-1">
+          <div className={`${base} w-2/5`} />
+          <div className="flex-1 flex flex-col gap-1.5 justify-center">
+            <div className={`${base} h-1.5 w-4/5`} />
+            <div className={`${base} h-1.5 w-3/5`} />
+            <div className={`${base} h-1.5 w-2/5`} />
+          </div>
+        </div>
+        <div className="flex gap-1.5 h-5">
+          <div className={`${base} flex-1`} />
+          <div className={`${base} flex-1`} />
+        </div>
+      </div>
+    )
+  }
+
+  if (type === "chart") {
+    return (
+      <div className="flex flex-col gap-1.5 h-full">
+        <div className="flex gap-1.5 items-end flex-1">
+          <div className={`${base} w-1/4 h-full`} />
+          <div className={`${base} w-1/4 h-3/4`} />
+          <div className={`${base} w-1/4 h-[90%]`} />
+          <div className={`${base} w-1/4 h-1/2`} />
+        </div>
+        <div className={`${base} h-2 w-full`} />
+        <div className={`${base} h-2 w-3/5`} />
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex flex-col gap-1.5 h-full">
+      <div className={`${base} h-2 w-3/5`} />
+      <div className={`${base} h-2 w-2/5`} />
+      <div className="flex gap-1.5 flex-1">
+        <div className={`${base} flex-[1.2]`} />
+        <div className={`${base} flex-[2]`} />
+      </div>
+      <div className="flex gap-1.5 h-5">
+        <div className={`${base} flex-1`} />
+        <div className={`${base} flex-1`} />
+        <div className={`${base} flex-1`} />
+      </div>
+    </div>
+  )
+}
 
 export default function Projects() {
   return (
-    <section className="p-8 rounded-3xl border border-black/10 dark:border-white/20 
-                       backdrop-blur-xl bg-white/70 dark:bg-black/50">
-     <h2 className="text-xl font-semibold mb-3">Recent Projects</h2>
+    <section className="p-6 sm:p-8 rounded-3xl border border-black/10 dark:border-white/10">
+      <div className="flex items-baseline justify-between mb-5">
+        <h2 className="text-xl font-semibold">Recent Projects</h2>
+        <span className="text-xs text-foreground/40 font-mono tracking-wider">
+          {String(projects.length).padStart(2, "0")} total
+        </span>
+      </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 divide-x divide-y divide-black/8 dark:divide-white/8 border border-black/8 dark:border-white/8 rounded-2xl overflow-hidden">
         {projects.map((p) => (
           <a
             key={p.name}
             href={p.repoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block p-8 border-2 border-black/5 dark:border-white/10 
-                       rounded-3xl backdrop-blur-2xl
-                       bg-white/80 dark:bg-black/40
-                       hover:bg-white dark:hover:bg-white/20
-                       transition-all duration-500 
-                       hover:scale-105 hover:-translate-y-3
-                       hover:border-black/20 dark:hover:border-white/30
-                       shadow-xl hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/10
-                       overflow-hidden"
+            className="group relative flex flex-col bg-white dark:bg-neutral-900 hover:bg-black/[0.02] dark:hover:bg-white/5 transition-colors duration-300 overflow-hidden"
           >
-            {/* Glass overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br 
-                           from-white/30 dark:from-white/20 
-                           to-transparent opacity-0 group-hover:opacity-100
-                           transition-all duration-700 rounded-3xl" />
-            
-            {/* Shine effect */}
-            <div className="absolute top-0 left-0 w-full h-1 
-                           bg-gradient-to-r from-transparent via-white/80 to-transparent
-                           opacity-0 group-hover:opacity-100 
-                           transform -translate-x-full group-hover:translate-x-full
-                           transition-all duration-1000" />
-            
-            {/* Content */}
-            <div className="relative z-10">
-              <h3 className="text-xl font-semibold mb-3 text-black dark:text-white">
+            <div className="flex-1 p-4 min-h-[100px]">
+              <MockUI type={p.mockType} />
+            </div>
+
+            <div className="h-px bg-black/8 dark:bg-white/8" />
+
+            <div className="px-4 py-3">
+              <p className="text-[10px] uppercase tracking-widest text-foreground/35 font-mono mb-1">
+                {p.tag}
+              </p>
+              <p className="text-sm font-medium text-foreground truncate">
                 {p.name}
-              </h3>
-              
-              <p className="text-sm text-foreground/70 leading-relaxed mb-6">
+              </p>
+            </div>
+
+            <div className="absolute inset-0 flex flex-col justify-center px-4 py-4 bg-white dark:bg-neutral-950 border-l-2 border-foreground/20 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300 ease-out">
+              <p className="text-[10px] uppercase tracking-widest text-foreground/40 font-mono mb-2">
+                {p.tag} · {p.year}
+              </p>
+
+              <p className="text-sm font-medium text-foreground mb-1.5">
+                {p.name}
+              </p>
+
+              <p className="text-xs text-foreground/60 leading-relaxed mb-3">
                 {p.desc}
               </p>
-              
-              {/* Action link */}
-              <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100
-                            translate-y-2 group-hover:translate-y-0
-                            transition-all duration-500">
-                <div className="w-2 h-2 bg-black dark:bg-white rounded-full 
-                              group-hover:scale-125 transition-transform duration-300" />
-                <span className="font-bold text-sm uppercase tracking-wider
-                               text-black dark:text-white">
-                  View Repository →
-                </span>
+
+              <div className="flex flex-wrap gap-1 mb-3">
+                {p.stack.map((s) => (
+                  <span
+                    key={s}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded-full border border-black/10 dark:border-white/15 text-foreground/50"
+                  >
+                    {s}
+                  </span>
+                ))}
               </div>
+
+              <span className="text-xs font-medium text-foreground/80 tracking-wide">
+                View repo →
+              </span>
             </div>
           </a>
         ))}

@@ -2,7 +2,7 @@ export default function SkeletonLoader() {
   // --border in light mode = oklch(0.922 0 0) → a very soft gray, nearly white
   // --border in dark mode  = oklch(1 0 0 / 10%) → subtle white-alpha on dark bg
   // This gives us bones that feel "white-ish" in light and dark-subtle in dark.
-  const boneBg = "var(--border)"
+  const boneBg = "var(--border)";
 
   const Bone = ({
     w = "100%",
@@ -10,10 +10,10 @@ export default function SkeletonLoader() {
     r = 6,
     mb = 0,
   }: {
-    w?: string | number
-    h?: number
-    r?: number
-    mb?: number
+    w?: string | number;
+    h?: number;
+    r?: number;
+    mb?: number;
   }) => (
     <div
       style={{
@@ -29,7 +29,7 @@ export default function SkeletonLoader() {
     >
       <div className="sk-shimmer" />
     </div>
-  )
+  );
 
   const Card = ({ children }: { children: React.ReactNode }) => (
     <div
@@ -42,7 +42,7 @@ export default function SkeletonLoader() {
     >
       {children}
     </div>
-  )
+  );
 
   return (
     <div style={{ background: "var(--background)", minHeight: "100vh" }}>
@@ -55,12 +55,32 @@ export default function SkeletonLoader() {
           }}
         >
           {/* LEFT col (span 2) */}
-          <div style={{ gridColumn: "span 2", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-
+          <div
+            style={{
+              gridColumn: "span 2",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.5rem",
+            }}
+          >
             <Card>
-              <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 16 }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 14,
+                  alignItems: "center",
+                  marginBottom: 16,
+                }}
+              >
                 <Bone w={60} h={60} r={30} />
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 8,
+                  }}
+                >
                   <Bone w="55%" h={18} />
                   <Bone w="38%" h={12} />
                 </div>
@@ -89,14 +109,30 @@ export default function SkeletonLoader() {
           </div>
 
           {/* RIGHT col */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+          >
             <Card>
               <Bone w="42%" h={18} mb={14} />
               {[0, 1, 2, 3].map((i) => (
-                <div key={i} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 12 }}>
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    gap: 10,
+                    alignItems: "center",
+                    marginBottom: 12,
+                  }}
+                >
                   <Bone w={32} h={32} r={8} />
-                  <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <div
+                    style={{
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 6,
+                    }}
+                  >
                     <Bone h={12} w="68%" />
                     <Bone h={10} w="48%" />
                   </div>
@@ -120,7 +156,13 @@ export default function SkeletonLoader() {
           <div style={{ gridColumn: "span 2" }}>
             <Card>
               <Bone w="28%" h={18} mb={14} />
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 12,
+                }}
+              >
                 {[0, 1, 2, 3].map((i) => (
                   <div
                     key={i}
@@ -140,6 +182,21 @@ export default function SkeletonLoader() {
                   </div>
                 ))}
               </div>
+            </Card>
+          </div>
+          {/* CERTIFICATIONS (RIGHT OF PROJECTS) */}
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+          >
+            <Card>
+              <Bone w="48%" h={18} mb={14} />
+
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <div key={i} style={{ marginBottom: 12 }}>
+                  <Bone h={13} w="80%" mb={6} />
+                  <Bone h={11} w="55%" />
+                </div>
+              ))}
             </Card>
           </div>
         </div>
@@ -163,5 +220,5 @@ export default function SkeletonLoader() {
         }
       `}</style>
     </div>
-  )
+  );
 }

@@ -17,10 +17,13 @@ function getInitialLoadState(): LoadState {
   }
 }
 
+// ✅ Checks localStorage first (where ThemeToggle saves the preference),
+//    then falls back to the DOM class, then to OS preference.
 function detectDarkMode(): boolean {
   try {
-    if (document.documentElement.classList.contains("dark")) return true
-    if (document.documentElement.classList.contains("light")) return false
+    const saved = localStorage.getItem("theme")
+    if (saved === "dark") return true
+    if (saved === "light") return false
     return window.matchMedia("(prefers-color-scheme: dark)").matches
   } catch {
     return false
@@ -36,6 +39,7 @@ export default function App() {
     const onMqChange = () => setIsDark(detectDarkMode())
     mq.addEventListener("change", onMqChange)
 
+    // Still watch the DOM class so toggling live also updates isDark immediately
     const observer = new MutationObserver(() => setIsDark(detectDarkMode()))
     observer.observe(document.documentElement, {
       attributes: true,
@@ -82,7 +86,7 @@ export default function App() {
       {loadState === "ready" && (
         <div style={{ animation: "pageReveal 0.5s ease-out forwards" }}>
           <Header />
-          <main className="max-w-6xl mx-auto px-4">
+          <main className="max-w-6xl mx-auto px-2 sm:px-4 pt-2 sm:pt-4">
             <Home />
           </main>
         </div>
