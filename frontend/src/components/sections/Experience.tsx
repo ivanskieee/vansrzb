@@ -51,9 +51,8 @@ export default function Experience() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section className="p-6 rounded-lg border">
-      <h2 className="text-lg font-semibold mb-3">Experience</h2>
-
+    <section className="p-4 sm:p-6 rounded-lg border">
+      <h2 className="text-base sm:text-lg font-semibold mb-3">Experience</h2>
       <ul className="space-y-3 text-sm">
         {milestones.map((m, i) => (
           <li
@@ -61,8 +60,10 @@ export default function Experience() {
             className="cursor-pointer"
             onClick={() => setActive(active === i ? null : i)}
           >
-            <strong>{m.title}</strong> – {m.org} <br />
-            <span className="text-slate-500">{m.year}</span>
+            <strong className="text-xs sm:text-sm">{m.title}</strong>
+            <span className="text-xs sm:text-sm"> – {m.org}</span>
+            <br />
+            <span className="text-slate-500 text-xs">{m.year}</span>
             {active === i && (
               <p className="mt-1 text-slate-400 text-xs leading-relaxed border-l-2 border-slate-400 pl-2 ml-1">
                 {m.description}
