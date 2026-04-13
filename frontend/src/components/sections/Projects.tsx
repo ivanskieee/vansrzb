@@ -1,23 +1,25 @@
-import React from "react"
+import React from "react";
 
 const projects = [
   {
-    name: "SPC Evaluation System",
-    desc: "Teacher performance evaluation platform",
+    name: "Records System",
+    desc: "A system to organize records",
     tag: "Web App",
-    year: "2024",
-    stack: ["Laravel", "Vue", "MySQL"],
-    repoLink: "https://github.com/yourusername/spc-evaluation",
+    year: "2025",
+    stack: ["JavaScript", "Node JS", "MySQL"],
+    repoLink: "https://github.com/kevinbalocos/records-management-cong-system",
     mockType: "dashboard",
+    image: "/rms.jpg",
   },
   {
-    name: "School Portal System",
-    desc: "Enrollment & tuition payment system",
-    tag: "Portal",
-    year: "2024",
-    stack: ["Next.js", "Prisma", "Stripe"],
-    repoLink: "https://github.com/yourusername/school-portal",
-    mockType: "portal",
+    name: "Business Permit System",
+    desc: "A system to process business permit",
+    tag: "Web App",
+    year: "2025",
+    stack: ["TypeScript", "Node JS", "MySQL"],
+    repoLink: "https://github.com/kevinbalocos/business-permit-system", // replace if you have repo
+    mockType: "Web App",
+    image: "/bps.jpg",
   },
   {
     name: "Project Three",
@@ -55,12 +57,12 @@ const projects = [
     repoLink: "#",
     mockType: "chart",
   },
-]
+];
 
-type MockUIProps = { type: string }
+type MockUIProps = { type: string };
 
 function MockUI({ type }: MockUIProps) {
-  const base = "rounded bg-black/5 dark:bg-white/5"
+  const base = "rounded bg-black/5 dark:bg-white/5";
 
   if (type === "portal") {
     return (
@@ -78,7 +80,7 @@ function MockUI({ type }: MockUIProps) {
         </div>
         <div className={`${base} h-2 w-1/2`} />
       </div>
-    )
+    );
   }
 
   if (type === "mobile") {
@@ -95,7 +97,7 @@ function MockUI({ type }: MockUIProps) {
         <div className={`${base} h-2 w-full`} />
         <div className={`${base} h-2 w-3/5`} />
       </div>
-    )
+    );
   }
 
   if (type === "cards") {
@@ -112,7 +114,7 @@ function MockUI({ type }: MockUIProps) {
           <div className={`${base} flex-1`} />
         </div>
       </div>
-    )
+    );
   }
 
   if (type === "list") {
@@ -132,7 +134,7 @@ function MockUI({ type }: MockUIProps) {
           <div className={`${base} flex-1`} />
         </div>
       </div>
-    )
+    );
   }
 
   if (type === "chart") {
@@ -147,7 +149,7 @@ function MockUI({ type }: MockUIProps) {
         <div className={`${base} h-2 w-full`} />
         <div className={`${base} h-2 w-3/5`} />
       </div>
-    )
+    );
   }
 
   return (
@@ -164,7 +166,7 @@ function MockUI({ type }: MockUIProps) {
         <div className={`${base} flex-1`} />
       </div>
     </div>
-  )
+  );
 }
 
 export default function Projects() {
@@ -172,9 +174,6 @@ export default function Projects() {
     <section className="p-6 sm:p-8 rounded-3xl border border-black/10 dark:border-white/10">
       <div className="flex items-baseline justify-between mb-5">
         <h2 className="text-xl font-semibold">Recent Projects</h2>
-        <span className="text-xs text-foreground/40 font-mono tracking-wider">
-          {String(projects.length).padStart(2, "0")} total
-        </span>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 divide-x divide-y divide-black/8 dark:divide-white/8 border border-black/8 dark:border-white/8 rounded-2xl overflow-hidden">
@@ -186,8 +185,16 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="group relative flex flex-col bg-white dark:bg-neutral-900 hover:bg-black/[0.02] dark:hover:bg-white/5 transition-colors duration-300 overflow-hidden"
           >
-            <div className="flex-1 p-4 min-h-[100px]">
-              <MockUI type={p.mockType} />
+            <div className="flex-1 p-4 min-h-[100px] flex items-center justify-center">
+              {p.image ? (
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              ) : (
+                <MockUI type={p.mockType} />
+              )}
             </div>
 
             <div className="h-px bg-black/8 dark:bg-white/8" />
@@ -233,5 +240,5 @@ export default function Projects() {
         ))}
       </div>
     </section>
-  )
+  );
 }
